@@ -34,20 +34,33 @@ function impar(numeros) {
     };
 };
 
+// função iterar sobre array. Procurar menor número. Adicionar a variável à declaração numeroMenor 
+function menor(numeros) {
+    let menor = numeros[0];
+    for (const n of numeros) if (n < menor) {
+        menor = n;
+    };
+    numeroMenor = menor;
+};
+
+// função iterar sobre array. Procurar maior número. Adicionar a variável à declaração numerMaior 
+function maior(numeros) {
+    let maior = numeros[0];
+    for (const n of numeros) if (n > maior) {
+        maior = n;
+    };
+    numeroMaior = maior;
+};
+
+// chamar funções
 par(numeros);
 impar(numeros);
+menor(numeros);
+maior(numeros);
 
-console.log(numeros);
-console.log(numerosPar);
-console.log(numerosImpar);
-
-// numeros transformar em array
-// declarar funções
-
-// funcao criar array com par
-// funcao criar array com impar
-// funcao imprimir menor numero
-// funcao imprimir maior numero
-// funcao media
-
-
+// imprimir no console o resultado
+console.log(`Os números são: ${numeros.join(' ')}`);
+console.log(`Os números pares são: ${numerosPar.join(' ')}`);
+console.log(`Os números ímpares são: ${numerosImpar.join(' ')}`);
+console.log(`O menor número é: ${numeroMenor}`);
+console.log(`O maior número é: ${numeroMaior}`);
