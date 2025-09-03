@@ -1,6 +1,10 @@
 // Crie um script Node que receba números via linha de comando e imprima: 
 // lista de pares, lista de ímpares, mínimo, máximo e média com 2 casas.
-// Uso esperado: node main.js 10 3 7 8 2 11
+// Uso esperado: 
+// node main.js 10 3 7 8 2 11
+// node main.js "10,3,7,8,2,11"
+// node main.js --ordenar 10 3 7 8 2 11
+// node main.js 1.5 2.5 4 a b
 
 // declarações
 const numeros = [];
@@ -10,11 +14,33 @@ let numeroMenor;
 let numeroMaior;
 let numeroMedia;
 
-// lê args e preenche números
-const args = process.argv.slice(2);
-for (const a of args) {
-    const n = Number(a);
+
+// process.argv com filtro na entrada do cli
+const raw = process.argv.slice(2);
+const ordenar = raw.includes("--ordenar");
+const tokens = raw
+    .filter(x => x !== "--ordenar")
+    .flatMap(x => x.includes(",") ? x.split(",") : [x])
+    .map(x => x.trim())
+    .filter(x => x.length > 0);
+
+// joga os números filtrados para dentro da array numeros
+for (const t of tokens) {
+    const n = Number(t);
     if (Number.isFinite(n)) numeros.push(n);
+    else console.warn(`Ignorado: "${t}" (não numérico.)`);
+};
+
+// verifica se numeros.length é igual a zero
+if (numeros.length === 0) {
+    console.log("Nenhum número válido");
+    process.exit(0);
+};
+
+// imprimir texto em ordem crescente
+if (ordenar) {
+    const ordenados = [...numeros].sort((a, b) => a - b);
+    console.log("Ordenado:", ordenados.join(" "));
 };
 
 // função iterar sobre array principal e puxar para outra array números pares
@@ -53,12 +79,13 @@ function maior(numeros) {
     numeroMaior = maior;
 };
 
+// função iterar sobre array. Adicionar números: somando cada iteração na variável total. Dividir total pelo .length da array. Adicionar o resultado à declaração numeroMedia
 function media(numeros) {
     let total = 0;
     for (let i = 0; i < numeros.length; i++) {
         total += numeros[i];
     };
-   numeroMedia = total / numeros.length; 
+    numeroMedia = total / numeros.length;
 };
 
 // chamar funções
@@ -74,5 +101,5 @@ console.log(`Os números pares são: ${numerosPar.join(' ')}`);
 console.log(`Os números ímpares são: ${numerosImpar.join(' ')}`);
 console.log(`O menor número é: ${numeroMenor}`);
 console.log(`O maior número é: ${numeroMaior}`);
-console.log(`A média dos números é: ${Math.floor(numeroMedia)}`);
+console.log(`A média dos números é: ${numeroMedia.toFixed(2)}`);
 
