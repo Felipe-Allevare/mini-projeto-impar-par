@@ -8,6 +8,7 @@ const numerosPar = [];
 const numerosImpar = [];
 let numeroMenor;
 let numeroMaior;
+let numeroMedia;
 
 // lê args e preenche números
 const args = process.argv.slice(2);
@@ -43,7 +44,7 @@ function menor(numeros) {
     numeroMenor = menor;
 };
 
-// função iterar sobre array. Procurar maior número. Adicionar a variável à declaração numerMaior 
+// função iterar sobre array. Procurar maior número. Adicionar a variável à declaração numeroMaior 
 function maior(numeros) {
     let maior = numeros[0];
     for (const n of numeros) if (n > maior) {
@@ -52,11 +53,20 @@ function maior(numeros) {
     numeroMaior = maior;
 };
 
+function media(numeros) {
+    let total = 0;
+    for (let i = 0; i < numeros.length; i++) {
+        total += numeros[i];
+    };
+   numeroMedia = total / numeros.length; 
+};
+
 // chamar funções
 par(numeros);
 impar(numeros);
 menor(numeros);
 maior(numeros);
+media(numeros);
 
 // imprimir no console o resultado
 console.log(`Os números são: ${numeros.join(' ')}`);
@@ -64,3 +74,5 @@ console.log(`Os números pares são: ${numerosPar.join(' ')}`);
 console.log(`Os números ímpares são: ${numerosImpar.join(' ')}`);
 console.log(`O menor número é: ${numeroMenor}`);
 console.log(`O maior número é: ${numeroMaior}`);
+console.log(`A média dos números é: ${Math.floor(numeroMedia)}`);
+
