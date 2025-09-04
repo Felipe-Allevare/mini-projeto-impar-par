@@ -102,4 +102,3 @@ console.log(`Os números ímpares são: ${numerosImpar.join(' ')}`);
 console.log(`O menor número é: ${numeroMenor}`);
 console.log(`O maior número é: ${numeroMaior}`);
 console.log(`A média dos números é: ${numeroMedia.toFixed(2)}`);
-
