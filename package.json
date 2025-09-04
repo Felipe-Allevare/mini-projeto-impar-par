@@ -1,0 +1,21 @@
+{
+  "name": "mini-projeto-impar-par",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "ordenar": "node main.js --ordenar",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Felipe-Allevare/mini-projeto-impar-par.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Felipe-Allevare/mini-projeto-impar-par/issues"
+  },
+  "homepage": "https://github.com/Felipe-Allevare/mini-projeto-impar-par#readme"
+}
